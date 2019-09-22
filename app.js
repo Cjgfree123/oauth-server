@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+// oauth2.0/authorize
+var oauthRouter = require('./routes/oauth');
 
 var app = express();
 
@@ -22,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/oauth2.0', oauthRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
