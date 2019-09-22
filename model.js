@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
-let connection = mongoose.createConnection("mongodb://localhost/zfoauth");
+let connection = mongoose.createConnection("mongodb://127.0.0.1:27017");
 
 // 用户信息
 exports.User = connection.model("User", new Schema({
@@ -10,6 +10,10 @@ exports.User = connection.model("User", new Schema({
         required: true,
     },
     password: {
+        type: String,
+        required: true,
+    },
+    email:{
         type: String,
         required: true,
     },
