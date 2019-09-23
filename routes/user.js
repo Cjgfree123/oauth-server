@@ -4,12 +4,16 @@ var router = express.Router();
 const gravatar = require('gravatar');
 const { User } = require("../model.js");
 
-// /user/signup
-// 注意: 表单提交方式, 必须和请求方式保持一致
-router.post('/signup',async function (req, res, next) {
+// /user/signup [get]
+router.get('/signup',async function (req, res, next) {
   res.render("signup", {
     title: "注册"
   });
+}); 
+
+// user/signup [post]
+router.post('/signup',async function (req, res, next) {
+  // res.json({a:1})
   let body = req.body; // {username,password,email,gender}
   body.avatar = gravatar.url(body.email); // 通过邮件得到头像
   let user = new User(body);
@@ -18,19 +22,22 @@ router.post('/signup',async function (req, res, next) {
   res.redirect("/user/signin");
 });
 
-// /user/signin
-router.post('/signin',async function (req, res, next) {
+// /user/sign [get]
+router.get('/signin',async function (req, res, next) {
   res.render("signin", {
     title: "登录"
   });
+}); 
 
-  // let body = req.body;
-  // let oldUser = User.findOne({ body });
-  // if(oldUser){
-  //   res.redirect("/");
-  // }else{
-  //   res.redirect("/back");
-  // }
+// /user/signin [post]
+router.post('/signin',async function (req, res, next) {
+  let body = req.body;
+  let oldUser = User.findOne({ body });
+  if(oldUser){
+    res.redirect("/");
+  }else{
+    res.redirect("/back");
+  }
 });
 
 
