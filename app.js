@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
@@ -21,6 +22,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use(session({
+//   secret: "zfpx",
+//   resave: true, // 重新保存
+//   saveUninitialized: true, // 保存会触发session的初始化
+// }));
+
+// app.use(function(req, res, next){
+  // console.log("session............", req.session)
+  // res.locals 是渲染模板的对象
+  // res.locals.user = req.session;
+  // console.log("req.locals.user", req.locals.user)
+// });
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);

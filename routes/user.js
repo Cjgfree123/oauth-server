@@ -34,6 +34,8 @@ router.post('/signin',async function (req, res, next) {
   let body = req.body;
   let oldUser = User.findOne({ body });
   if(oldUser){
+    // req.session.user = oldUser;
+    // console.log("req.session", req.session)
     res.redirect("/");
   }else{
     res.redirect("/back");
