@@ -1,6 +1,7 @@
 module.exports = {
     appId: "101499238",
     appKey: "xxxxxx",
+    dbUrl: "mongodb://127.0.0.1:27017",
     access_token: "access_token",
     redirect_uri: "http://localhost:4000/user/callback",
     // 授权码authorize code

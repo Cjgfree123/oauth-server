@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+const { dbUrl } = require('./config.js');
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 let connection = mongoose.createConnection(dbUrl);
@@ -13,7 +14,7 @@ exports.User = connection.model("User", new Schema({
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
         required: true,
     },
@@ -85,8 +86,13 @@ exports.Permission = connection.model("Permission", new Schema({
         type: String,
         required: true,
     },
+    route: { // 权限名称
+        type: String,
+        required: true,
+    },
     createAt: { // /user/get_user_info
         type: String,
         required: true,
+        default: Date.now(),
     },
 }));

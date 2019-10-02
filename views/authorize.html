@@ -3,38 +3,54 @@
     <div class="row">
         <!-- 左侧 -->
         <div class="col-md-3 col-md-offset-3">
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="Username">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="Password">
-            </div>
-            <div class="form-group text-center">
-                <a href="">
-                    <input type="submit" class="btn btn-primary" style="width: 100%" />
-                </a>
-            </div>
+            <%
+              if(user){%>
+                <div class="form-group text-center">
+                    <img class="img-responsive" style="border-radius: 50%; display: inline-block;" src="data:image/jpeg;base64,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" alt="">
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" class="btn btn-primary" style="width: 100%" value="授权"/>
+                </div>
+            <%}else{%>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Password">
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" class="btn btn-primary" style="width: 100%" value="登录并授权"/>
+                </div>
+            <%}
+            %>
+           
         </div>
         <!-- 右侧 -->
         <div class="col-md-3">
             <ul class="list-group">
                 <li class="list-group-item">
-                    晨晨将获得以下权限:
+                    <a style="color: blue; font-weight: normal;"><%= application.website %></a>将获得以下权限:
                 </li>
                 <li class="list-group-item">
                     <div class="checkbox">
                         <label for="">
                             <input type="checkbox" /> 全选
                         </label>
-                    </div>
+                    </div> 
                 </li>
-                <li class="list-group-item">
-                    <div class="checkbox">
-                        <label for="">
-                            <input type="checkbox" /> 获得您的昵称、头像、性别
-                        </label>
-                    </div>
-                </li>
+
+                <%
+                permissions.forEach(function(item){ %>
+                    <li class="list-group-item">
+                        <div class="checkbox">
+                            <label for="">
+                                <input type="checkbox" value="<%=item._id%>" />
+                                <%=item.name%>
+                            </label>
+                        </div>
+                    </li>
+                <%})
+                %>
                 <li class="list-group-item">
                     授权后表明您同意
                     <a href="https://weixin.qq.com/agreement?lang=zh_CN" target="__blank">我的协议</a>
