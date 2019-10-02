@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
+// 这个模块,可以将会话数据放在mongo数据库中，即使应用服务器重启了，回话也不会丢失。
+const MongoStore = require("connect-mongo")(session);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
 // oauth2.0/authorize
@@ -22,6 +25,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    secret: true,
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      url: "mongodb://127.0.0.1",
+    })
+  })
+);
 
 // app.use(session({
 //   secret: "zfpx",

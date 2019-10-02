@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
-let connection = mongoose.createConnection("mongodb://127.0.0.1:27017");
+let connection = mongoose.createConnection(dbUrl);
 
 // 用户信息
 exports.User = connection.model("User", new Schema({
