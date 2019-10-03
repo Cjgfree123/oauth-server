@@ -23,6 +23,7 @@ exports.User = connection.model("User", new Schema({
         type: Number,
         default: 1, // 1男 0女
     },
+    oauth: String,
 }));
 
 // Application(存放第三方信息)
@@ -56,6 +57,10 @@ exports.AuthorizationCode = connection.model("AuthorizationCode", new Schema({
         // permissions 是一个外键的数组, 类型是文档的主键, ref指定这个外键是哪个集合的主键
         ref: "Permission",
     }],
+    isUsed:{
+        type: Boolean,
+        default: false,
+    },
     user: { // 对哪个用户授权
         type: ObjectId,
         ref: "User",
